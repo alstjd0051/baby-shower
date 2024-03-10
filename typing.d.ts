@@ -4,8 +4,21 @@ export type AuthUser = {
   username: string;
   email: string;
   image?: string;
-  selector?: "public" | "master";
   cookie?: string;
+};
+export type AuthProfile = {
+  resultcode: string;
+  message: string;
+  response?: {
+    id: string;
+    profile_image: string;
+    gender: string;
+    email: string;
+    mobile: string;
+    mobile_e164: string;
+    name: string;
+    birthyear: string;
+  };
 };
 
 export type OAuthUser = {
@@ -14,5 +27,5 @@ export type OAuthUser = {
   name?: string;
   image?: string | null;
   username?: string;
-  selector: "public" | "master";
+  phone?: string;
 };
