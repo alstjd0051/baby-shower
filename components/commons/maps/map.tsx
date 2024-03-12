@@ -3,7 +3,7 @@ import React from "react";
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { icon } from "leaflet";
-import { MapPin } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -12,6 +12,7 @@ const Map = (props: Props) => {
     iconUrl: "/assets/BlueIcon.svg",
     iconSize: [30, 90],
   });
+  const router = useRouter();
 
   return (
     <MapContainer
@@ -29,10 +30,17 @@ const Map = (props: Props) => {
       />
       <Marker icon={blueIcon} position={[37.577079, 127.19151]}>
         <Popup>
-          <button>Kakao</button>
-          <button>Naver</button>
+          <button
+            onClick={() =>
+              router.push(
+                "https://map.kakao.com/link/map/별이보러가는길,37.577079,127.19151"
+              )
+            }
+          >
+            Kakao
+          </button>
         </Popup>
-        {/* <Tooltip>Tooltip for Marker</Tooltip> */}
+        <Tooltip>온파티 하남</Tooltip>
       </Marker>
       {/* <MapMarker /> */}
     </MapContainer>
