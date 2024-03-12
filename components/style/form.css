@@ -4,6 +4,9 @@
 
 @layer components {
   input {
-    @apply w-full p-2 border-black border rounded-lg;
+    @apply w-full px-2 py-4 border-black border-2 rounded-lg;
+  }
+  textarea {
+    @apply w-full overflow-auto min-h-32 will-change-scroll max-h-none rounded-lg border-2 resize-none px-2 pt-2 border-black;
   }
 }
