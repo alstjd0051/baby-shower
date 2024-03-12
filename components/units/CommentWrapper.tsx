@@ -10,9 +10,15 @@ const CommentWrapper = (props: Props) => {
   const { getData } = useGuestBook();
 
   return (
-    <section className="h- my-10  relative space-y-10  " id="comment">
-      <CommentList getData={getData} />
+    <section
+      className="my-10 max-w-2xl mx-auto  relative space-y-10  "
+      id="comment"
+    >
+      <div className="">
+        <h1>방명록</h1>
+      </div>
       <GuestForm />
+      <CommentList getData={getData} />
     </section>
   );
 };
