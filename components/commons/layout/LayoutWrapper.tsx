@@ -1,14 +1,12 @@
 "use client";
+
+import React, { Suspense, useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import React, { Suspense, useEffect, useState } from "react";
-import Header from "./header";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { ThemeProviderProps } from "next-themes/dist/types";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-const LayoutWrapper = ({ children }: Props) => {
+const LayoutWrapper = ({ children, ...props }: ThemeProviderProps) => {
   const [mounted, setMounted] = useState(false);
   const [queryClient] = useState(
     () =>
@@ -30,19 +28,27 @@ const LayoutWrapper = ({ children }: Props) => {
     return;
   }
   return (
-    <QueryClientProvider client={queryClient}>
-      <Header />
-      {children}
-      {process.env.NODE_ENV === "development" && (
-        <Suspense fallback={null}>
-          <ReactQueryDevtools
-            initialIsOpen={false}
-            buttonPosition="bottom-left"
-            position="bottom"
-          />
-        </Suspense>
-      )}
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <NextThemesProvider
+          storageKey={"theme"}
+          attribute="data-theme"
+          defaultTheme="dark"
+          {...props}
+        >
+          {children}
+        </NextThemesProvider>
+        {process.env.NODE_ENV === "development" && (
+          <Suspense fallback={null}>
+            <ReactQueryDevtools
+              initialIsOpen={false}
+              buttonPosition="bottom-left"
+              position="bottom"
+            />
+          </Suspense>
+        )}
+      </QueryClientProvider>
+    </>
   );
 };
 
