@@ -5,7 +5,7 @@ import MapWrapper from "@/components/units/MapWrapper";
 export default async function Home() {
   return (
     <section>
-      {/* <MainWrapper /> */}
+      <MainWrapper />
       <MapWrapper />
       <CommentWrapper />
     </section>

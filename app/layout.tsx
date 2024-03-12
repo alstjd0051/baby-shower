@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={`${inter.className} scroll-smooth`}>
         <NextAuthContext>
           <LayoutWrapper>
-            <Header />
+            {/* <Header /> */}
             <main className="min-h-dvh px-10">{children}</main>
             <Toaster position="top-right" />
           </LayoutWrapper>
