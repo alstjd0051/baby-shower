@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/components/commons/layout/LayoutWrapper";
+import Header from "@/components/commons/layout/header";
+import NextAuthContext from "@/components/context/next-auth";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={inter.className}>
-        <LayoutWrapper>{children}</LayoutWrapper>
+      <body className={`${inter.className} scroll-smooth`}>
+        <NextAuthContext>
+          <LayoutWrapper>
+            <Header />
+            <main className="min-h-dvh px-10">{children}</main>
+            <Toaster position="top-right" />
+          </LayoutWrapper>
+        </NextAuthContext>
       </body>
     </html>
   );
