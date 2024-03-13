@@ -32,6 +32,10 @@ export type OAuthUser = {
 
 export interface OpenModal {
   isModalOpen: boolean;
-  openModal: (value: boolean) => void;
-  closeModal: (value: boolean) => void;
+  setOpenModal: (value: boolean) => void;
+  setCloseModal: (value: boolean) => void;
+}
+export interface IconsProps {
+  title: string;
+  iconUrl: string;
 }

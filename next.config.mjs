@@ -18,6 +18,10 @@ const nextConfig = {
         hostname: "phinf.pstatic.net",
         protocol: "https",
       },
+      {
+        hostname: "cdn.sanity.io",
+        protocol: "https",
+      },
     ],
   },
   transpilePackages: ["lucide-react"],

@@ -5,6 +5,7 @@ import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { Session } from "next-auth";
 import { useUsers } from "@/components/hooks/users";
+import { useSignInModal } from "@/components/hooks/modal";
 
 type Props = {
   session: Session | null;
@@ -12,17 +13,20 @@ type Props = {
 
 const SocialLogin = ({ session }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isModalOpen, setOpenModal } = useSignInModal();
   const { data } = useUsers({ id: session?.user.id! });
 
   return (
     <div>
       {session ? (
         <AnimatePresence>
-          <div className="flex items-center gap-x-3 relative">
+          <div
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex items-center gap-x-3 relative cursor-pointer"
+          >
             <Image
               src={session.user.image!}
               width={500}
-              onClick={() => setIsOpen(!isOpen)}
               alt="profile"
               height={500}
               className="size-10 rounded-full cursor-pointer"
@@ -47,17 +51,7 @@ const SocialLogin = ({ session }: Props) => {
         </AnimatePresence>
       ) : (
         <div className="flex items-center gap-x-3">
-          {Socials.map(({ icon, name, url }, idx) => (
-            <Image
-              src={icon}
-              key={idx}
-              width={500}
-              alt={name}
-              height={500}
-              onClick={() => signIn(url)}
-              className="text-white size-10 cursor-pointer"
-            />
-          ))}
+          <button onClick={() => setOpenModal(!isModalOpen)}>LogIn</button>
         </div>
       )}
     </div>
