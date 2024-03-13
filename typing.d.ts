@@ -38,4 +38,5 @@ export interface OpenModal {
 export interface IconsProps {
   title: string;
   iconUrl: string;
+  description?: string;
 }

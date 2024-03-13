@@ -5,9 +5,10 @@ import { NextResponse } from "next/server";
 export const POST = async (req: Request) => {
   const { title } = (await req.json()) as { title: string[] };
   const querys = groq`
-  *[_type =='icons' && title in $title ]{
+  *[_type =='icons' && title in $title ]|order(title asc){
     title,
-    "iconUrl":icon.asset->url
+    "iconUrl":icon.asset->url,
+    description
 }
 
   `;
