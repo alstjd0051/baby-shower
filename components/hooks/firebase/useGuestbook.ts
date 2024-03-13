@@ -16,13 +16,20 @@ import { useRouter } from "next/navigation";
 export const useGuestBook = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
-  const { data: getData, isLoading: getLoading } = useQuery({
+  const {
+    data: getData,
+    isLoading: getLoading,
+    isError: getError,
+  } = useQuery<GuestBook[]>({
     queryKey: ["getGuestbook"],
     queryFn: async () => {
-      const query = await getDoc(doc(fireStore, "baby", "guestbook"));
-      const { comments } = query.data() as { comments: GuestBook[] };
-      return comments;
+      const res = await fetch(`/api/guestbooks`, {
+        method: "GET",
+      }).then((res) => res.json());
+      return res;
     },
+    gcTime: Infinity,
+    retry: 1,
   });
 
   const { mutateAsync: postData } = useMutation({
@@ -37,10 +44,15 @@ export const useGuestBook = () => {
           day: "2-digit",
         }),
       };
-      const query = await updateDoc(doc(fireStore, "baby", "guestbook"), {
-        comments: arrayUnion(newComment),
-      });
-      return query;
+
+      const req = await fetch(`/api/guestbooks`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newComment),
+      }).then((res) => res.json());
+      return req;
     },
     retry: 1,
     onSuccess: () => {
@@ -58,5 +70,5 @@ export const useGuestBook = () => {
     },
   });
 
-  return { getData, postData, getLoading };
+  return { getData, postData, getLoading, getError };
 };

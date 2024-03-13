@@ -12,13 +12,6 @@ const NotoSerif = Noto_Serif_KR({
 type Props = {};
 
 const MainWrapper = (props: Props) => {
-  /* .mid-border {
-    border: 6px solid #DE9B72;
-    height: 100%;
-    width: 100%;
-    padding: 6px;
-    margin: auto;
-} */
   return (
     <section className="h-dvh">
       <motion.div

@@ -7,7 +7,7 @@ import CommentList from "../commons/comments/commentList";
 type Props = {};
 
 const CommentWrapper = (props: Props) => {
-  const { getData } = useGuestBook();
+  const { getData, getLoading } = useGuestBook();
 
   return (
     <section
@@ -18,7 +18,7 @@ const CommentWrapper = (props: Props) => {
         <h1>방명록</h1>
       </div>
       <GuestForm />
-      <CommentList getData={getData} />
+      <CommentList getLoading={getLoading} getData={getData} />
     </section>
   );
 };
