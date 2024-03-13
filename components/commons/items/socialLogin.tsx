@@ -22,7 +22,7 @@ const SocialLogin = ({ session }: Props) => {
         <AnimatePresence>
           <div
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center gap-x-3 relative cursor-pointer"
+            className="flex items-center gap-x-3 group relative cursor-pointer"
           >
             <Image
               src={session.user.image!}
@@ -31,7 +31,6 @@ const SocialLogin = ({ session }: Props) => {
               height={500}
               className="size-10 rounded-full cursor-pointer"
             />
-            <h1 className="text-pretty dark:">{data?.name}</h1>
 
             {isOpen && (
               <>
@@ -39,8 +38,9 @@ const SocialLogin = ({ session }: Props) => {
                   initial={{ y: 0 }}
                   animate={{ y: 50 }}
                   exit={{ y: -10, opacity: 0 }}
-                  className="absolute bg-gray-400 px-4 py-2"
+                  className="absolute dark:bg-white *:dark:text-black bg-black *:text-white  rounded-lg  px-4 py-2"
                 >
+                  <div className="bg-inherit rotate-45 p-1 absolute top-0 -translate-y-1/2 left-1/3 -translate-x-1/2"></div>
                   <button className="" onClick={() => signOut()}>
                     LogOut
                   </button>

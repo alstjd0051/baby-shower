@@ -20,7 +20,7 @@ const CommentWrapper = (props: Props) => {
           height={500}
           className="w-50"
         />
-        <h1 className="text-5xl ">방명록</h1>
+        <h1 className="text-5xl">방명록</h1>
       </div>
       <GuestForm />
       <CommentList />
