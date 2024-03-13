@@ -1,5 +1,5 @@
 "use client";
-import { useGuestBook } from "@/components/hooks/firebase/useGuestbook";
+import { useGuestBook } from "@/components/hooks/firebase/Guestbook";
 import { useSession } from "next-auth/react";
 import React from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";

@@ -1,14 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import {
-  doc,
-  getDoc,
-  updateDoc,
-  arrayUnion,
-  Timestamp,
-} from "firebase/firestore";
 
 import { FieldValues } from "react-hook-form";
-import { fireStore } from "./useFirebase";
 import { GuestBook } from "@/comment";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -27,9 +19,6 @@ export const useGuestBook = () => {
         method: "GET",
       }).then((res) => res.json());
       const { comments } = res as { comments: GuestBook[] };
-
-      console.log("res", res);
-      console.log("comments", comments);
       return comments;
     },
     gcTime: Infinity,

@@ -19,7 +19,7 @@ const MainWrapper = (props: Props) => {
         initial={{ x: 0, y: 0 }}
         animate={{ x: 0, y: 40 }}
       >
-        <div className="border-black rounded-full border-[4px]">
+        <div className="rounded-full border-[4px]">
           <p>송한별</p>
           <p className="font-black">첫 생일</p>
         </div>
