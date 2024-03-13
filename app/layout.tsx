@@ -25,7 +25,7 @@ export default function RootLayout({
         <NextAuthContext>
           <LayoutWrapper>
             <Header />
-            <main className="min-h-dvh px-10">{children}</main>
+            <>{children}</>
             <LoginModal />
             <Toaster position="top-right" />
           </LayoutWrapper>

@@ -10,7 +10,7 @@ type Props = {};
 const ThemeSwitch = (props: Props) => {
   const { scope, theme, setTheme } = useThemeChange();
   return (
-    <div className="float-right ">
+    <div className="float-right">
       {theme === "light" ? (
         <motion.div
           initial={{ opacity: 0, rotate: 0 }}

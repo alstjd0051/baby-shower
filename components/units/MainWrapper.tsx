@@ -19,9 +19,9 @@ const MainWrapper = (props: Props) => {
         initial={{ x: 0, y: 0 }}
         animate={{ x: 0, y: 40 }}
       >
-        <div className="rounded-full border-[4px]">
+        <div className="rounded-full">
           <p>송한별</p>
-          <p className="font-black">첫 생일</p>
+          <p>첫 생일</p>
         </div>
       </motion.div>
     </section>

@@ -17,7 +17,7 @@ const SocialLogin = ({ session }: Props) => {
   const { data } = useUsers({ id: session?.user.id! });
 
   return (
-    <div>
+    <>
       {session ? (
         <AnimatePresence>
           <div
@@ -54,7 +54,7 @@ const SocialLogin = ({ session }: Props) => {
           <button onClick={() => setOpenModal(!isModalOpen)}>LogIn</button>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

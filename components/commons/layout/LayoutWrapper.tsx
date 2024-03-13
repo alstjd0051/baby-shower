@@ -29,25 +29,25 @@ const LayoutWrapper = ({ children, ...props }: ThemeProviderProps) => {
   }
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <NextThemesProvider
-          storageKey={"theme"}
-          attribute="data-theme"
-          defaultTheme="dark"
-          {...props}
-        >
+      <NextThemesProvider
+        storageKey={"theme"}
+        attribute="class"
+        defaultTheme="dark"
+        {...props}
+      >
+        <QueryClientProvider client={queryClient}>
           {children}
-        </NextThemesProvider>
-        {process.env.NODE_ENV === "development" && (
-          <Suspense fallback={null}>
-            <ReactQueryDevtools
-              initialIsOpen={false}
-              buttonPosition="bottom-left"
-              position="bottom"
-            />
-          </Suspense>
-        )}
-      </QueryClientProvider>
+          {process.env.NODE_ENV === "development" && (
+            <Suspense fallback={null}>
+              <ReactQueryDevtools
+                initialIsOpen={false}
+                buttonPosition="bottom-left"
+                position="bottom"
+              />
+            </Suspense>
+          )}
+        </QueryClientProvider>
+      </NextThemesProvider>
     </>
   );
 };
