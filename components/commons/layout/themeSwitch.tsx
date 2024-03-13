@@ -10,7 +10,7 @@ type Props = {};
 const ThemeSwitch = (props: Props) => {
   const { scope, theme, setTheme } = useThemeChange();
   return (
-    <div>
+    <div className="float-right ">
       {theme === "light" ? (
         <motion.div
           initial={{ opacity: 0, rotate: 0 }}
@@ -18,7 +18,7 @@ const ThemeSwitch = (props: Props) => {
           transition={{ delay: 0.05, duration: 1.5 }}
         >
           <button ref={scope} onClick={() => setTheme("dark")}>
-            <MdModeNight className="fill-black  rounded-full p-2 w-10 h-10" />
+            <FaLightbulb className="text-white fill-yellow-500 rounded-full p-2 w-10 h-10" />
           </button>
         </motion.div>
       ) : (
@@ -28,7 +28,7 @@ const ThemeSwitch = (props: Props) => {
           transition={{ delay: 0.05, duration: 1 }}
         >
           <button ref={scope} onClick={() => setTheme("light")}>
-            <FaLightbulb className="text-white rounded-full p-2 w-10 h-10" />
+            <MdModeNight className=" rounded-full p-2 w-10 h-10" />
           </button>
         </motion.div>
       )}

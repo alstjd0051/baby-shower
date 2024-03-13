@@ -16,13 +16,13 @@ const filraCode = Fira_Code({
 type Props = {};
 
 const Header = (props: Props) => {
-  const [scrolled, setScrolled] = useState<string>(" shadow-md z-50");
+  const [scrolled, setScrolled] = useState<string>("");
   const { data: session } = useSession();
   useEffect(() => {
     const listenScrollEvent = () => {
-      window.scrollY >= 150
-        ? setScrolled("fixed top-0 shadow-md z-50 bg-transparent z-50 bg-white")
-        : setScrolled("block shadow-md z-50 ");
+      window.scrollY >= 50
+        ? setScrolled("")
+        : setScrolled("text-white block shadow-md z-50");
     };
     window.addEventListener("scroll", listenScrollEvent);
     return () => {
@@ -32,12 +32,12 @@ const Header = (props: Props) => {
 
   return (
     <header
-      className={`${scrolled} top-0 w-full flex items-center justify-between px-10 py-5`}
+      className={`${
+        !scrolled &&
+        "fixed top-0 shadow-md z-50 bg-white text-black fill-yellow-600"
+      } top-0 w-full flex items-center justify-between gap-x-10 px-10 py-5`}
     >
-      <Link
-        href={"/"}
-        className={`text-xl font-bold text-black ${filraCode.className} `}
-      >
+      <Link href={"/"} className={`text-xl font-bold  ${filraCode.className} `}>
         Byul
       </Link>
       <div className="flex items-center gap-x-5">
