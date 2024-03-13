@@ -16,13 +16,11 @@ const filraCode = Fira_Code({
 type Props = {};
 
 const Header = (props: Props) => {
-  const [scrolled, setScrolled] = useState<string>("");
   const { data: session } = useSession();
+  const [scrolled, setScrolled] = useState<boolean>();
   useEffect(() => {
     const listenScrollEvent = () => {
-      window.scrollY >= 50
-        ? setScrolled("")
-        : setScrolled("text-white block shadow-md z-50");
+      window.scrollY > 100 ? setScrolled(true) : setScrolled(false);
     };
     window.addEventListener("scroll", listenScrollEvent);
     return () => {
@@ -32,9 +30,10 @@ const Header = (props: Props) => {
 
   return (
     <header
-      className={`${
-        !scrolled &&
-        "fixed top-0 shadow-md z-50 bg-white text-black fill-yellow-600"
+      className={` ${
+        scrolled
+          ? "fixed top-0 shadow-md z-50 bg-white/50 text-black fill-yellow-600"
+          : "text-white  shadow-md z-50 block"
       } top-0 w-full flex items-center justify-between gap-x-10 px-10 py-5`}
     >
       <Link href={"/"} className={`text-xl font-bold  ${filraCode.className} `}>
