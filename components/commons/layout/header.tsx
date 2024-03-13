@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useUsers } from "@/components/hooks/users";
 import { Fira_Code } from "next/font/google";
 import SocialLogin from "../items/socialLogin";
+import ThemeSwitch from "./themeSwitch";
 
 const filraCode = Fira_Code({
   subsets: ["latin"],
@@ -15,16 +16,12 @@ const filraCode = Fira_Code({
 type Props = {};
 
 const Header = (props: Props) => {
-  const [scrolled, setScrolled] = useState<string>(
-    "*:text-white shadow-md z-50"
-  );
+  const [scrolled, setScrolled] = useState<string>(" shadow-md z-50");
   const { data: session } = useSession();
   useEffect(() => {
     const listenScrollEvent = () => {
       window.scrollY >= 150
-        ? setScrolled(
-            "fixed top-0 shadow-md z-50 bg-transparent z-50 bg-white text-black"
-          )
+        ? setScrolled("fixed top-0 shadow-md z-50 bg-transparent z-50 bg-white")
         : setScrolled("block shadow-md z-50 ");
     };
     window.addEventListener("scroll", listenScrollEvent);
@@ -37,10 +34,16 @@ const Header = (props: Props) => {
     <header
       className={`${scrolled} top-0 w-full flex items-center justify-between px-10 py-5`}
     >
-      <Link href={"/"} className={`text-xl font-bold ${filraCode.className} `}>
+      <Link
+        href={"/"}
+        className={`text-xl font-bold text-black ${filraCode.className} `}
+      >
         Byul
       </Link>
-      <SocialLogin session={session} />
+      <div className="flex items-center gap-x-5">
+        <SocialLogin session={session} />
+        <ThemeSwitch />
+      </div>
     </header>
   );
 };
