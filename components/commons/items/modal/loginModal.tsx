@@ -1,6 +1,7 @@
 "use client";
 import { useIcons } from "@/components/hooks/icons";
 import { useSignInModal } from "@/components/hooks/modal";
+import { AnimatePresence, motion } from "framer-motion";
 import { XIcon } from "lucide-react";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
@@ -16,34 +17,41 @@ const LoginModal = (props: Props) => {
   }, [getIcons]);
 
   return (
-    isModalOpen && (
-      <div className="fixed max-w-3xl bg-white shadow-2xl rounded-lg h-52 top-1/2 left-1/2 -translate-x-1/2 space-y-10 -translate-y-1/2 z-50 p-5">
-        <XIcon
-          className="float-right cursor-pointer text-black"
-          onClick={() => setCloseModal(!isModalOpen)}
-        />
-        <div className="flex flex-col gap-y-5 pb-6">
-          {Icon?.map(({ iconUrl, title }, idx) => (
-            <div
-              key={idx}
-              onClick={() => signIn(title)}
-              className="flex items-center cursor-pointer"
-            >
-              <Image
-                src={iconUrl}
-                alt={`${title} image`}
-                width={500}
-                height={500}
-                className="size-10 hidden md:block"
-              />
-              <button className="p-3 text-black dark:text-white text-2xl">
-                Sign in with {title}
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-    )
+    <AnimatePresence>
+      {isModalOpen && (
+        <motion.div
+          initial={{ y: -1000, x: "-50%" }}
+          animate={{ y: "-50%", x: "-50%" }}
+          exit={{ y: -1000, x: 0 }}
+          className="fixed min-w-64 min-h-60 bg-white shadow-2xl rounded-lg h-52 top-1/2 left-1/2 -translate-x-1/2 space-y-10 -translate-y-1/2 z-50 p-5"
+        >
+          <XIcon
+            className="float-right cursor-pointer text-black"
+            onClick={() => setCloseModal(!isModalOpen)}
+          />
+          <div className="flex flex-col gap-y-5 pb-6">
+            {Icon?.map(({ iconUrl, title }, idx) => (
+              <div
+                key={idx}
+                onClick={() => signIn(title)}
+                className="flex items-center justify-center cursor-pointer"
+              >
+                <Image
+                  src={iconUrl}
+                  alt={`${title} image`}
+                  width={500}
+                  height={500}
+                  className="size-10 block"
+                />
+                <button className="p-3 text-black dark:text-white  md:text-[1.4vw]">
+                  Sign in with {title}
+                </button>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
