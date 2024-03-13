@@ -31,7 +31,7 @@ const SocialLogin = ({ session }: Props) => {
               height={500}
               className="size-10 rounded-full cursor-pointer"
             />
-            <h1 className="text-pretty">{data?.name}</h1>
+            <h1 className="text-pretty dark:">{data?.name}</h1>
 
             {isOpen && (
               <>

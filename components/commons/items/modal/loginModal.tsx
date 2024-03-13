@@ -17,12 +17,12 @@ const LoginModal = (props: Props) => {
 
   return (
     isModalOpen && (
-      <div className="fixed max-w-3xl bg-white h-52 top-1/2 left-1/2 -translate-x-1/2 space-y-10 -translate-y-1/2">
+      <div className="fixed max-w-3xl bg-white shadow-2xl rounded-lg h-52 top-1/2 left-1/2 -translate-x-1/2 space-y-10 -translate-y-1/2 z-50 p-5">
         <XIcon
-          className="float-right cursor-pointer"
+          className="float-right cursor-pointer text-black"
           onClick={() => setCloseModal(!isModalOpen)}
         />
-        <div className="flex flex-col gap-y-5">
+        <div className="flex flex-col gap-y-5 pb-6">
           {Icon?.map(({ iconUrl, title }, idx) => (
             <div
               key={idx}
@@ -36,7 +36,9 @@ const LoginModal = (props: Props) => {
                 height={500}
                 className="size-10 hidden md:block"
               />
-              <button className="p-3 text-2xl">Sign in with {title}</button>
+              <button className="p-3 text-black dark:text-white text-2xl">
+                Sign in with {title}
+              </button>
             </div>
           ))}
         </div>
