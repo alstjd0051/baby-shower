@@ -5,7 +5,7 @@ interface themeProps {}
 export const useThemeChange = () => {
   const { theme, setTheme } = useTheme();
   const [scope, animate] = useAnimate();
-  setTheme(theme!);
+
   animate([
     theme === "light" && "system"
       ? [scope.current, { rotate: 0 }]
