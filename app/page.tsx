@@ -4,7 +4,7 @@ import MapWrapper from "@/components/units/MapWrapper";
 
 export default async function Home() {
   return (
-    <section>
+    <section className="dark:bg-white ">
       <MainWrapper />
       <MapWrapper />
       <CommentWrapper />
