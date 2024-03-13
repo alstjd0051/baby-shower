@@ -30,13 +30,14 @@ const GuestForm = ({}: Props) => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: Object) => {
-    if (!session) {
-      setError("name", {
-        message: "로그인이 필요합니다.",
-      });
-    }
     try {
-      await postData(data);
+      if (!session) {
+        setError("name", {
+          message: "로그인이 필요합니다.",
+        });
+      } else {
+        await postData(data);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -52,6 +53,7 @@ const GuestForm = ({}: Props) => {
           disabled: !session?.user,
           validate: (value: string) => value.length > 2,
           maxLength: 15,
+          minLength: 2,
         })}
         placeholder={session ? "이름을 입력해주세요" : "로그인을 해주세요"}
       />

@@ -55,9 +55,6 @@ export const useGuestBook = () => {
       toast.success("댓글이 등록되었습니다.", {
         position: "bottom-right",
       });
-      router.replace("#map", {
-        scroll: true,
-      });
     },
     onError: (error) => {
       console.log(error);
