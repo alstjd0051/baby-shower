@@ -4,7 +4,7 @@ import MapWrapper from "@/components/units/MapWrapper";
 
 export default async function Home() {
   return (
-    <main className="min-h-dvh px-10 ">
+    <main className="min-h-dvh px-10  ">
       <MainWrapper />
       <MapWrapper />
       <CommentWrapper />

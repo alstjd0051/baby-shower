@@ -15,14 +15,12 @@ const MainWrapper = (props: Props) => {
   return (
     <section className="h-dvh">
       <motion.div
-        className={`float-right *:font-bold *:md:text-[3vw] *:text-center ${NotoSerif.className}`}
-        initial={{ x: 0, y: 0 }}
-        animate={{ x: 0, y: 40 }}
+        className={`float-right *:font-normal *:md:text-[3vw]  *:text-center ${NotoSerif.className}`}
+        initial={{ x: 0, y: -10 }}
+        whileInView={{ x: 0, y: 70 }}
       >
-        <div className="rounded-full">
-          <p>송한별</p>
-          <p>첫 생일</p>
-        </div>
+        <p>송한별</p>
+        <p>첫 생일</p>
       </motion.div>
     </section>
   );

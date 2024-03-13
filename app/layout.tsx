@@ -21,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${inter.className} scroll-smooth`}>
+      <body
+        className={`${inter.className} scroll-smooth bg-[#f8f4f3] dark:bg-[#333] `}
+      >
         <NextAuthContext>
           <LayoutWrapper>
             <Header />
