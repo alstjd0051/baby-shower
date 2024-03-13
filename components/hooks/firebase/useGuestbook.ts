@@ -16,11 +16,12 @@ import { useRouter } from "next/navigation";
 export const useGuestBook = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
-  const { data: getData } = useQuery({
+  const { data: getData, isLoading: getLoading } = useQuery({
     queryKey: ["getGuestbook"],
     queryFn: async () => {
       const query = await getDoc(doc(fireStore, "baby", "guestbook"));
-      return query.data() as GuestBook;
+      const { comments } = query.data() as { comments: GuestBook[] };
+      return comments;
     },
   });
 
@@ -57,5 +58,5 @@ export const useGuestBook = () => {
     },
   });
 
-  return { getData, postData };
+  return { getData, postData, getLoading };
 };
