@@ -1,13 +1,13 @@
 import { GuestBook } from "@/comment";
 import React from "react";
 import HamsterSpinner from "../items/spinner/hamster";
+import { useGuestBook } from "@/components/hooks/firebase/useGuestbook";
 
-type Props = {
-  getData: GuestBook[] | undefined;
-  getLoading: boolean;
-};
+type Props = {};
 
-const CommentList = ({ getData, getLoading }: Props) => {
+const CommentList = ({}: Props) => {
+  const { getData, getLoading } = useGuestBook();
+
   return (
     <div className="space-y-5 max-w-4xl mx-auto relative">
       {getLoading && (
@@ -27,7 +27,7 @@ const CommentList = ({ getData, getLoading }: Props) => {
           </div>
         </div>
       ))}
-      {getData === undefined && (
+      {getData?.length === 0 && (
         <div className="bg-gray-400/40 py-4 text-center rounded-lg">
           <h1>등록된 방명록이 없습니다.</h1>
         </div>

@@ -26,7 +26,11 @@ export const useGuestBook = () => {
       const res = await fetch(`/api/guestbooks`, {
         method: "GET",
       }).then((res) => res.json());
-      return res;
+      const { comments } = res as { comments: GuestBook[] };
+
+      console.log("res", res);
+      console.log("comments", comments);
+      return comments;
     },
     gcTime: Infinity,
     retry: 1,
@@ -59,7 +63,9 @@ export const useGuestBook = () => {
       queryClient.invalidateQueries({
         queryKey: ["getGuestbook"],
       });
-      toast.success("댓글이 등록되었습니다.");
+      toast.success("댓글이 등록되었습니다.", {
+        position: "bottom-right",
+      });
       router.replace("#map", {
         scroll: true,
       });

@@ -6,19 +6,22 @@ import { NextResponse } from "next/server";
 export const GET = async (req: Request) => {
   try {
     const query = await getDoc(doc(fireStore, "baby", "guestbook"));
-    const { comments } = query.data() as { comments: GuestBook[] };
-    return NextResponse.json(comments, { status: 200 });
-  } catch (error) {}
+    const data = query.data();
+    return NextResponse.json(data, { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(error, { status: 500 });
+  }
 };
 
 export const POST = async (req: Request) => {
-  const newComment = await req.json();
   try {
+    const newComment = await req.json();
     const query = await updateDoc(doc(fireStore, "baby", "guestbook"), {
       comments: arrayUnion(newComment),
     });
     return NextResponse.json(query, { status: 200 });
   } catch (error) {
-    return NextResponse.json(error, { status: 500 });
+    return NextResponse.json({ error: error }, { status: 500 });
   }
 };
