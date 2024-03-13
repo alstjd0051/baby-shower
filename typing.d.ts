@@ -29,3 +29,9 @@ export type OAuthUser = {
   username?: string;
   phone?: string;
 };
+
+export interface OpenModal {
+  isModalOpen: boolean;
+  openModal: (value: boolean) => void;
+  closeModal: (value: boolean) => void;
+}
