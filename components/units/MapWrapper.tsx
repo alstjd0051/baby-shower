@@ -1,8 +1,12 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import Map from "../commons/maps/map";
 import { Yatra_One, Bagel_Fat_One } from "next/font/google";
+import { Link } from "lucide-react";
+import { useIcons } from "../hooks/icons";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const permanentMarker = Yatra_One({
   weight: ["400"],
@@ -18,23 +22,16 @@ const bagelFatOne = Bagel_Fat_One({
 type Props = {};
 
 const MapWrapper = (props: Props) => {
-  const { data } = useQuery({
-    queryKey: ["getMap"],
-    queryFn: async () => {
-      const res = await fetch("/api/map");
-      const data = await res.json();
-      return data;
-    },
-  });
+  const { getIcons, Icon } = useIcons();
+  const router = useRouter();
+  useEffect(() => {
+    getIcons(["navermap", "tmap", "kakaomap", "googlemap"]);
+  }, [getIcons]);
 
   return (
-    <section id="map" className="h-dvh w-full overflow-hidden space-y-10 ">
+    <section id="map" className="min-h-dvh w-full overflow-hidden space-y-10 ">
       <div className="mx-auto max-w-fit text-orange-600/60">
-        {/* Image */}
-
-        <h1
-          className={`${bagelFatOne.className} text-xl text-center md:text-[3vw] `}
-        >
+        <h1 className={`${bagelFatOne.className} text-center text-[3vw] `}>
           오시는 길
         </h1>
       </div>
@@ -42,6 +39,20 @@ const MapWrapper = (props: Props) => {
         <Suspense fallback={<div>Loading...</div>}>
           <Map />
         </Suspense>
+      </div>
+      <div className="flex items-center justify-center gap-x-5 flex-wrap">
+        {Icon?.map(({ iconUrl, title, description }, idx) => (
+          <div key={idx} className="flex items-center gap-x-5">
+            <Image
+              src={iconUrl}
+              alt={`${title} image`}
+              width={500}
+              height={500}
+              onClick={() => router.push(description!)}
+              className="size-10 md:size-20 rounded-lg hidden md:block cursor-pointer"
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
