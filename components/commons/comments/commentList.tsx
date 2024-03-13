@@ -1,13 +1,20 @@
 import { GuestBook } from "@/comment";
 import React from "react";
+import HamsterSpinner from "../items/spinner/hamster";
 
 type Props = {
   getData: GuestBook[] | undefined;
+  getLoading: boolean;
 };
 
-const CommentList = ({ getData }: Props) => {
+const CommentList = ({ getData, getLoading }: Props) => {
   return (
-    <div className="space-y-5 max-w-4xl mx-auto ">
+    <div className="space-y-5 max-w-4xl mx-auto relative">
+      {getLoading && (
+        <div className="">
+          <HamsterSpinner />
+        </div>
+      )}
       {getData?.map(({ message, name, timestamp }, idx) => (
         <div
           key={idx}
