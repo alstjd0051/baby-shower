@@ -1,4 +1,3 @@
-import { GuestBook } from "@/comment";
 import React from "react";
 import HamsterSpinner from "../items/spinner/hamster";
 import { useGuestBook } from "@/components/hooks/firebase/useGuestbook";
