@@ -7,7 +7,6 @@ import { useMainSorage } from "@/components/hooks/admin/storage";
 type Props = {};
 
 const MainUploadPage = (props: Props) => {
-  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
   const { POSTAdmin } = useMainSorage();
 
   const {
@@ -17,13 +16,7 @@ const MainUploadPage = (props: Props) => {
     watch,
     setValue,
   } = useForm();
-  const handleImageChange = (e: {
-    target: { files: Iterable<unknown> | ArrayLike<unknown> };
-  }) => {
-    const files = Array.from(e.target.files);
-    const previews = files?.map((file) => URL.createObjectURL(file as Blob));
-    setImagePreviews((prevPreviews) => [...prevPreviews, ...previews]);
-  };
+
   const images = watch("image");
 
   const onSubmit: SubmitHandler<FieldValues> = async ({ slug, image }) => {
@@ -37,8 +30,8 @@ const MainUploadPage = (props: Props) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <label
-          className={` bg-white rounded-lg shadow-md cursor-pointer flex flex-col gap-5 items-center justify-center relative h-[50dvh] ${
-            imagePreviews
+          className={`bg-white rounded-lg shadow-md cursor-pointer flex flex-col gap-5 items-center justify-center relative h-[50dvh] ${
+            images
               ? "flex items-center"
               : "p-6 w-full  border-2 border-dashed border-[#cacaca]"
           } `}
