@@ -86,22 +86,6 @@ export const authOptions: NextAuthOptions = {
           phone: profile.kakao_account?.phone_number || "",
           provider: "kakao",
         });
-        // const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/login`, {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({
-        //     id: String(profile.id),
-        //     name: profile.properties.nickname,
-        //     image: profile.properties.profile_image,
-        //     email: profile.kakao_account?.email || "Anonymous",
-        //     username: profile.properties.nickname,
-        //     selector: "public",
-        //     phone: profile.kakao_account?.phone_number || "",
-        //     provider: "kakao",
-        //   }),
-        // });
         const data = await res.json();
         if (data) {
           const { accessToken, refreshToken } = data;
