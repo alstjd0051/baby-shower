@@ -3,6 +3,12 @@ import React, { useEffect, useState } from "react";
 import "@/components/style/cake.css";
 import Image from "next/image";
 import { Lato } from "next/font/google";
+import { IAdminStorage } from "@/typing";
+
+interface Props {
+  getAdmin: IAdminStorage[] | undefined;
+  getLoading: boolean;
+}
 
 const latoFonts = Lato({
   weight: ["300"],
@@ -10,7 +16,7 @@ const latoFonts = Lato({
   display: "auto",
 });
 
-export const CakeLoading = () => {
+export const CakeLoading = ({ getAdmin, getLoading }: Props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -274,12 +280,14 @@ export const CakeLoading = () => {
         </>
       ) : (
         <div>
-          <Image
-            src={"/assets/img/mainImg.jpg"}
-            alt="MainImg"
-            width={500}
-            height={500}
-          />
+          {getAdmin && (
+            <Image
+              src={getAdmin?.[0]?.url ?? ""}
+              alt="MainImg"
+              width={500}
+              height={500}
+            />
+          )}
         </div>
       )}
     </div>
