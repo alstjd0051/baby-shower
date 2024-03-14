@@ -29,7 +29,10 @@ const MapWrapper = (props: Props) => {
   }, [getIcons]);
 
   return (
-    <section id="map" className="min-h-dvh w-full overflow-hidden space-y-10 ">
+    <section
+      id="map"
+      className="min-h-dvh w-full overflow-hidden space-y-10 px-10 "
+    >
       <div className="mx-auto max-w-fit text-orange-600/60">
         <p className={`${bagelFatOne.className} text-center text-[3vw] `}>
           오시는 길

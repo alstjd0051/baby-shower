@@ -1,27 +1,19 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
-import { Noto_Serif_KR } from "next/font/google";
-
-const NotoSerif = Noto_Serif_KR({
-  weight: ["200", "300", "400", "500", "600", "700", "900"],
-  style: ["normal", "normal"],
-  subsets: ["latin"],
-});
+import React, { useEffect, useState } from "react";
+import RightTiele from "../commons/items/framer/rightTiele";
+import { CakeLoading } from "../commons/items/spinner/CakeLoading";
+import { useSession } from "next-auth/react";
+import dynamic from "next/dynamic";
 
 type Props = {};
 
 const MainWrapper = (props: Props) => {
+  const { data } = useSession();
+
   return (
-    <section className="h-dvh">
-      <motion.div
-        className={`float-right *:font-normal *:md:text-[3vw]  *:text-center ${NotoSerif.className}`}
-        initial={{ x: 0, y: -10 }}
-        whileInView={{ x: 0, y: 70 }}
-      >
-        <p>송한별</p>
-        <p>첫 생일</p>
-      </motion.div>
+    <section className="h-dvh bg-[#ee9ca7]">
+      <CakeLoading />
+      <RightTiele />
     </section>
   );
 };

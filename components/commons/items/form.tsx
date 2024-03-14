@@ -44,7 +44,10 @@ const GuestForm = ({}: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 text-black ">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-2 *:pl-5 *:py-3 text-black "
+    >
       <input
         type="text"
         className="disabled:bg-gray-200 "
@@ -65,7 +68,6 @@ const GuestForm = ({}: Props) => {
       <textarea
         {...register("message", {
           required: "메시지를 입력해주세요",
-          validate: (value: string) => value.length > 2,
           onChange: textareaAutosize,
         })}
         placeholder="축하의 말을 작성해주세요."
