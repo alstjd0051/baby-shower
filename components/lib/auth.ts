@@ -1,12 +1,9 @@
-import { AuthProfile, AuthUser } from "./../../typing.d";
+import { AuthUser } from "./../../typing.d";
 import type { DefaultSession, NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { addUser } from "./sanity/user";
 import NaverProvider from "next-auth/providers/naver";
 import KakaoProvider from "next-auth/providers/kakao";
-
-import { cookies } from "next/headers";
-import { writeFileSync } from "fs";
 
 declare module "next-auth" {
   interface Session {
@@ -20,7 +17,6 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_OAUTH_ID!,
       clientSecret: process.env.GOOGLE_OAUTH_SECRET!,
       async profile(profile) {
-        writeFileSync("test/google.json", JSON.stringify(profile, null, 2));
         const id = profile.sub;
         const name = profile.name;
         const image = profile.picture;

@@ -3,7 +3,6 @@ import { Socials } from "@/components/assets/socialLogin";
 import { signIn, signOut, useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useUsers } from "@/components/hooks/users";
 import { Fira_Code } from "next/font/google";
 import SocialLogin from "../items/socialLogin";
 import ThemeSwitch from "./themeSwitch";
