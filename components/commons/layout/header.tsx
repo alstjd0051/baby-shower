@@ -29,9 +29,9 @@ const Header = (props: Props) => {
 
   return (
     <header
-      className={`shadow-md ${
+      className={`shadow-md bg-[#ee9ca7] dark:bg-[#ee9ca7]/20 ${
         scrolled
-          ? "fixed top-0   bg-white/50 text-black fill-yellow-600"
+          ? "fixed top-0  bg-white/50 text-black fill-yellow-600"
           : "unset"
       }  w-full z-50 flex items-center justify-between gap-x-10 px-10 py-5`}
     >
