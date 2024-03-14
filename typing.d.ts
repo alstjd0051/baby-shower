@@ -44,3 +44,7 @@ export interface IconsProps {
   iconUrl: string;
   description?: string;
 }
+export interface IAdminStorage {
+  url: string;
+  name: string;
+}

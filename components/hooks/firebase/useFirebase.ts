@@ -4,6 +4,7 @@ import { getAnalytics } from "firebase/analytics";
 import { createContext, useContext } from "react";
 import { Firestore, getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,6 +25,7 @@ const firebaseConfig = {
 const firebasedb = initializeApp(firebaseConfig);
 
 export const fireStore = getFirestore(firebasedb);
+export const storage = getStorage(firebasedb);
 export const authService = getAuth(firebasedb);
 
 export default firebasedb;
