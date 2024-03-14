@@ -43,7 +43,7 @@ const SocialLogin = ({ session }: Props) => {
                   className="absolute dark:bg-white *:dark:text-black bg-black *:text-white  rounded-lg px-4 py-2 shadow-md z-50"
                 >
                   <div className="bg-inherit rotate-45 p-1 absolute top-0 -translate-y-1/2 left-1/3 -translate-x-1/2"></div>
-                  <div className="space-y-2">
+                  <div className="space-y-2 hover:*:underline underline-offset-8">
                     {session.user.selector === "master" && (
                       <button
                         className=""
