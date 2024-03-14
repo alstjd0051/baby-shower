@@ -15,6 +15,7 @@ const SocialLogin = ({ session }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const { isModalOpen, setOpenModal } = useSignInModal();
   const { data } = useUsers({ id: session?.user.id! });
+  console.log(session?.user);
 
   return (
     <>
@@ -25,7 +26,7 @@ const SocialLogin = ({ session }: Props) => {
             className="flex items-center gap-x-3 group relative cursor-pointer"
           >
             <Image
-              src={session.user.image!}
+              src={data?.image || session.user.image!}
               width={500}
               alt="profile"
               height={500}
@@ -44,6 +45,11 @@ const SocialLogin = ({ session }: Props) => {
                   <button className="" onClick={() => signOut()}>
                     LogOut
                   </button>
+                  {session.user.selector === "master" && (
+                    <button className="" onClick={() => signOut()}>
+                      LogOut
+                    </button>
+                  )}
                 </motion.div>
               </>
             )}
