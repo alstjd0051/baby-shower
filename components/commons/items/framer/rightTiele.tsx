@@ -13,7 +13,7 @@ type Props = {};
 const RightTiele = (props: Props) => {
   return (
     <motion.div
-      className={`float-right *:font-normal *:md:text-[3vw]  *:text-center ${NotoSerif.className}`}
+      className={`absolute right-28 *:font-normal *:md:text-[3vw]  *:text-center ${NotoSerif.className}`}
       initial={{ x: 0, y: -10 }}
       whileInView={{ x: 0, y: 70 }}
     >

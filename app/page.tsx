@@ -4,10 +4,10 @@ import MapWrapper from "@/components/units/MapWrapper";
 
 export default async function Home() {
   return (
-    <main className="min-h-dvh">
+    <div className="min-h-dvh">
       <MainWrapper />
       <MapWrapper />
       <CommentWrapper />
-    </main>
+    </div>
   );
 }
