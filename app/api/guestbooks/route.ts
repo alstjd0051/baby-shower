@@ -9,7 +9,6 @@ export const GET = async (req: Request) => {
     const data = query.data();
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    console.log(error);
     return NextResponse.json(error, { status: 500 });
   }
 };

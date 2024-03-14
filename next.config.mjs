@@ -22,6 +22,10 @@ const nextConfig = {
         hostname: "cdn.sanity.io",
         protocol: "https",
       },
+      {
+        hostname: "k.kakaocdn.net",
+        protocol: "http",
+      },
     ],
   },
   transpilePackages: ["lucide-react"],

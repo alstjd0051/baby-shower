@@ -5,6 +5,8 @@ export type AuthUser = {
   email: string;
   image?: string;
   cookie?: string;
+  selector: "master" | "public";
+  provider?: string;
 };
 export type AuthProfile = {
   resultcode: string;
@@ -28,6 +30,8 @@ export type OAuthUser = {
   image?: string | null;
   username?: string;
   phone?: string;
+  selector: string;
+  provider: string;
 };
 
 export interface OpenModal {

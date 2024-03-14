@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/components/commons/layout/LayoutWrapper";
-import Header from "@/components/commons/layout/header";
+
 import NextAuthContext from "@/components/context/next-auth";
 import { Toaster } from "react-hot-toast";
 import LoginModal from "@/components/commons/items/modal/loginModal";
@@ -26,7 +26,6 @@ export default function RootLayout({
       >
         <NextAuthContext>
           <LayoutWrapper>
-            <Header />
             <>{children}</>
             <LoginModal />
             <Toaster position="top-right" />
