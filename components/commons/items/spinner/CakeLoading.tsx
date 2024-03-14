@@ -2,6 +2,13 @@
 import React, { useEffect, useState } from "react";
 import "@/components/style/cake.css";
 import Image from "next/image";
+import { Lato } from "next/font/google";
+
+const latoFonts = Lato({
+  weight: ["300"],
+  subsets: ["latin", "latin-ext"],
+  display: "auto",
+});
 
 export const CakeLoading = () => {
   const [loading, setLoading] = useState(true);
@@ -258,7 +265,9 @@ export const CakeLoading = () => {
             </path>
             <rect x="10" y="475.571" fill="#fefae9" width="180" height="4" />
           </svg>
-          <div className="text">
+          <div
+            className={`${latoFonts.className} text-[#8b6a60] font-light italic text-center *:text-[1.4em] `}
+          >
             <h1>happy birthday!</h1>
             <p>Hanbuyl</p>
           </div>
