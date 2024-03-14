@@ -9,7 +9,7 @@
   }
 
   .velas {
-    @apply bg-white rounded-[10px] absolute top-[228px] left-1/2 -ml-[2.4px] -mt-[8.33333333px] w-[5px] h-[35px] transform -translate-y-[300px];
+    @apply bg-white dark:bg-red-300 rounded-[10px] absolute top-[228px] left-1/2 -ml-[2.4px] -mt-[8.33333333px] w-[5px] h-[35px] transform -translate-y-[300px];
     backface-visibility: hidden;
     animation: in 500ms 6s ease-out forwards;
   }
