@@ -10,21 +10,31 @@ export const client = createClient({
   ignoreBrowserTokenWarning: true,
 });
 
-export async function addUser({
-  username,
-  id,
-  name,
+export const addUser = async ({
   email,
+  id,
+  selector,
   image,
+  name,
   phone,
-}: OAuthUser) {
-  return client.createIfNotExists({
-    _id: id,
-    _type: "author",
-    username,
-    email,
-    name,
-    image,
-    phone,
+  username,
+  provider,
+}: OAuthUser) => {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: String(id),
+      name: name,
+      image: image,
+      email: email || "Anonymous",
+      username,
+      selector,
+      phone: phone || "",
+      provider,
+    }),
   });
-}
+  return res;
+};
