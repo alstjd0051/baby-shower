@@ -3,7 +3,7 @@ import { useIcons } from "@/components/hooks/icons";
 import { useSignInModal } from "@/components/hooks/modal";
 import { AnimatePresence, motion } from "framer-motion";
 import { XIcon } from "lucide-react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useEffect } from "react";
 
@@ -12,9 +12,13 @@ type Props = {};
 const LoginModal = (props: Props) => {
   const { isModalOpen, setCloseModal } = useSignInModal();
   const { getIcons, Icon } = useIcons();
+  const { data: session } = useSession();
   useEffect(() => {
+    if (session) {
+      setCloseModal(false);
+    }
     getIcons(["google", "naver", "kakao"]);
-  }, [getIcons]);
+  }, [getIcons, isModalOpen, session, setCloseModal]);
 
   return (
     <AnimatePresence>
