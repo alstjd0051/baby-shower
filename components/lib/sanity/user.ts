@@ -20,7 +20,7 @@ export const addUser = async ({
   username,
   provider,
 }: OAuthUser) => {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/login`, {
+  const req = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -35,6 +35,7 @@ export const addUser = async ({
       phone: phone || "",
       provider,
     }),
-  });
-  return res;
+  }).then((res) => res.json());
+
+  return req;
 };

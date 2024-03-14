@@ -26,7 +26,7 @@ export const authOptions: NextAuthOptions = {
         const image = profile.picture;
         const email = profile.email;
         const username = profile.name;
-        await addUser({
+        const res = await addUser({
           id,
           name,
           image,
@@ -42,7 +42,7 @@ export const authOptions: NextAuthOptions = {
           image,
           email,
           username,
-          selector: "public",
+          selector: res.selector || "public",
         };
       },
     }),
@@ -50,7 +50,7 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.NAVER_OAUTH_CLIENT_ID!,
       clientSecret: process.env.NAVER_OAUTH_CLIENT_PW!,
       async profile(profile) {
-        await addUser({
+        const res = await addUser({
           id: profile.response.id,
           name: profile.response.name,
           image: profile.response.profile_image,
@@ -66,7 +66,7 @@ export const authOptions: NextAuthOptions = {
           image: profile.response.profile_image,
           email: profile.response.email,
           username: profile.response.name,
-          selector: "public",
+          selector: res.selector || "public",
         };
       },
     }),
@@ -84,12 +84,6 @@ export const authOptions: NextAuthOptions = {
           phone: profile.kakao_account?.phone_number || "",
           provider: "kakao",
         });
-        const data = await res.json();
-        if (data) {
-          const { accessToken, refreshToken } = data;
-          cookies().set("accessToken", accessToken);
-          cookies().set("refreshToken", refreshToken);
-        }
 
         return {
           id: String(profile.id),
@@ -97,15 +91,17 @@ export const authOptions: NextAuthOptions = {
           image: profile.properties.profile_image,
           email: profile.kakao_account?.email || "Anonymous",
           username: profile.properties.nickname,
-          selector: "public",
+          selector: res.selector || "public",
         };
       },
     }),
   ],
   callbacks: {
     async signIn({ user, profile, account }) {
+      // console.log("signIn user", user);
+      // console.log("signIn profile", profile);
+      // console.log("signIn account", account);
       if (!user.email) return false;
-
       const isAllowedToSignIn = true;
       if (isAllowedToSignIn) {
         return true;
@@ -115,6 +111,8 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       const user = session.user;
+      // console.log("session token", token);
+      // console.log("session session", session);
       if (session.user && token.selector) {
         session.user.selector = token.selector as "public" | "master";
       }
