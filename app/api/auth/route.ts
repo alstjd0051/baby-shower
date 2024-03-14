@@ -17,7 +17,6 @@ export const POST = async (req: Request) => {
 
   try {
     const res = await client.fetch(querys, {}, { cache: "no-store" });
-
     return NextResponse.json(res, { status: 200 });
   } catch (error) {
     return NextResponse.json(error, { status: 500 });

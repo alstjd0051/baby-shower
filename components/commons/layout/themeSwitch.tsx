@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "@/components/style/switchTheme.css";
 import { useTheme } from "next-themes";
 
@@ -10,7 +10,6 @@ const ThemeSwitch = (props: Props) => {
   const { setTheme: setCurrentTheme } = useTheme();
   const handleCheckboxChange = () => {
     if (switchInput.current) {
-      console.log("Checkbox is checked:", switchInput.current.checked);
       const validateTheme = switchInput.current.checked ? "dark" : "light";
       setCurrentTheme(validateTheme);
     }

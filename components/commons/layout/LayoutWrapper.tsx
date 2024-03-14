@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
+import Header from "./header";
 
 const LayoutWrapper = ({ children, ...props }: ThemeProviderProps) => {
   const [mounted, setMounted] = useState(false);
@@ -36,6 +37,7 @@ const LayoutWrapper = ({ children, ...props }: ThemeProviderProps) => {
         {...props}
       >
         <QueryClientProvider client={queryClient}>
+          <Header />
           {children}
           {process.env.NODE_ENV === "development" && (
             <Suspense fallback={null}>

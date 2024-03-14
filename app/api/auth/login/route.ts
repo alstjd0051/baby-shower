@@ -18,15 +18,6 @@ export const POST = async (req: Request) => {
     });
     return NextResponse.json(res, { status: 200 });
   } catch (error) {
-    console.log(error);
     return NextResponse.json(error, { status: 500 });
   }
-  /* await addUser({
-    id: data.id,
-    email: data.email,
-    image: data.image,
-    name: data.name,
-    phone: data.phone,
-    username: data.username || "",
-  }); */
 };

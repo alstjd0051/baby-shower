@@ -32,9 +32,9 @@ const Header = (props: Props) => {
     <header
       className={`shadow-md ${
         scrolled
-          ? "fixed top-0  z-50 bg-white/50 text-black fill-yellow-600"
-          : "z-50 block"
-      } top-0 w-full flex items-center justify-between gap-x-10 px-10 py-5`}
+          ? "fixed top-0   bg-white/50 text-black fill-yellow-600"
+          : "unset"
+      }  w-full z-50 flex items-center justify-between gap-x-10 px-10 py-5`}
     >
       <Link href={"/"} className={`text-xl font-bold  ${filraCode.className} `}>
         Byul
