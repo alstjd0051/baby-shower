@@ -9,7 +9,7 @@ type Props = {};
 const CommentWrapper = (props: Props) => {
   return (
     <section
-      className="max-w-2xl mx-auto  relative space-y-10 mb-20 "
+      className="max-w-2xl mx-auto relative space-y-10 pb-20"
       id="comment"
     >
       <div className="flex flex-col items-center gap-y-10">
