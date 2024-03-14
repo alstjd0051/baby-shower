@@ -37,8 +37,12 @@ const LayoutWrapper = ({ children, ...props }: ThemeProviderProps) => {
         {...props}
       >
         <QueryClientProvider client={queryClient}>
-          <Header />
-          {children}
+          <>
+            <Header />
+            <main className="bg-[#ee9ca7] dark:bg-[#ee9ca7]/20 min-h-dvh">
+              {children}
+            </main>
+          </>
           {process.env.NODE_ENV === "development" && (
             <Suspense fallback={null}>
               <ReactQueryDevtools

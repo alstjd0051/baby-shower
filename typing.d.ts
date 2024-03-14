@@ -30,8 +30,8 @@ export type OAuthUser = {
   image?: string | null;
   username?: string;
   phone?: string;
-  selector: string;
-  provider: string;
+  selector: "master" | "public";
+  provider?: string;
 };
 
 export interface OpenModal {
@@ -43,4 +43,8 @@ export interface IconsProps {
   title: string;
   iconUrl: string;
   description?: string;
+}
+export interface IAdminStorage {
+  url: string;
+  name: string;
 }

@@ -26,6 +26,10 @@ const nextConfig = {
         hostname: "k.kakaocdn.net",
         protocol: "http",
       },
+      {
+        hostname: "firebasestorage.googleapis.com",
+        protocol: "https",
+      },
     ],
   },
   transpilePackages: ["lucide-react"],

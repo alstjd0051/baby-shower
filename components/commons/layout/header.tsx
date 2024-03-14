@@ -3,7 +3,6 @@ import { Socials } from "@/components/assets/socialLogin";
 import { signIn, signOut, useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useUsers } from "@/components/hooks/users";
 import { Fira_Code } from "next/font/google";
 import SocialLogin from "../items/socialLogin";
 import ThemeSwitch from "./themeSwitch";
@@ -30,9 +29,9 @@ const Header = (props: Props) => {
 
   return (
     <header
-      className={`shadow-md ${
+      className={`shadow-md bg-[#ee9ca7] dark:bg-[#ee9ca7]/20 ${
         scrolled
-          ? "fixed top-0   bg-white/50 text-black fill-yellow-600"
+          ? "fixed top-0  bg-white/50 text-black fill-yellow-600"
           : "unset"
       }  w-full z-50 flex items-center justify-between gap-x-10 px-10 py-5`}
     >
