@@ -12,7 +12,6 @@ declare module "next-auth" {
   interface Session {
     user: AuthUser & DefaultSession["user"];
   }
-  interface Profile extends AuthProfile {}
 }
 
 export const authOptions: NextAuthOptions = {
@@ -27,7 +26,6 @@ export const authOptions: NextAuthOptions = {
         const image = profile.picture;
         const email = profile.email;
         const username = profile.name;
-
         await addUser({
           id,
           name,
@@ -116,9 +114,14 @@ export const authOptions: NextAuthOptions = {
       }
     },
     async session({ session, token }) {
+      const user = session.user;
       if (session.user && token.selector) {
         session.user.selector = token.selector as "public" | "master";
       }
+      session.user = {
+        ...user,
+        id: (token.sub as string) || (token.id as string),
+      };
       return session;
     },
     async jwt({ token, user }) {
