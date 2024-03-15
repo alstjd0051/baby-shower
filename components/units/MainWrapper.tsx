@@ -24,11 +24,14 @@ const MainWrapper = (props: Props) => {
 
   return (
     <section className="h-dvh relative">
-      {loading ? (
-        <CakeLoading />
-      ) : (
-        <MainImages getAdmin={getAdmin} getLoading={getLoading} />
-      )}
+      {loading && <CakeLoading />}
+
+      <MainImages
+        getAdmin={getAdmin}
+        getLoading={getLoading}
+        loading={loading}
+      />
+
       <RightTiele />
     </section>
   );
