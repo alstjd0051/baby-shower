@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .swiper {
+    @apply max-w-lg max-h-96;
+  }
+  .swiper-wrapper {
+    @apply h-52;
+  }
+  .swiper-slide {
+    @apply flex items-center justify-center rounded-2xl h-52 overflow-hidden;
+  }
+}
