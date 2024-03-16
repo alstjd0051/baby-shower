@@ -1,15 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import RightTiele from "../commons/items/framer/rightTiele";
-import { CakeLoading } from "../commons/items/spinner/CakeLoading";
 import { useMainSorage } from "../hooks/admin/storage";
 import MainImages from "../commons/items/main/images";
+import Carousel from "../commons/items/swiper/carousel";
 
 type Props = {};
 
 const MainWrapper = (props: Props) => {
   const { getAdmin, getLoading } = useMainSorage("main");
-  const [loading, setLoading] = useState(true);
+  const { getAdmin: getCarousel } = useMainSorage("carousel");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,15 +24,17 @@ const MainWrapper = (props: Props) => {
   }, [loading]);
 
   return (
-    <section className="h-dvh relative">
-      {loading && <CakeLoading />}
+    <section className="h-dvh relative max-w-screen-xl mx-auto">
+      {/* {loading && <CakeLoading />} */}
 
-      <MainImages
-        getAdmin={getAdmin}
-        getLoading={getLoading}
-        loading={loading}
-      />
-
+      <div className="relative flex flex-col">
+        <MainImages
+          getAdmin={getAdmin}
+          getLoading={getLoading}
+          loading={loading}
+        />
+        <Carousel getAdmin={getCarousel} loading={loading} />
+      </div>
       <RightTiele />
     </section>
   );
