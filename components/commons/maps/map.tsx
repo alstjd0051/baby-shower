@@ -29,17 +29,6 @@ const Map = (props: Props) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker icon={blueIcon} position={[37.577079, 127.19151]}>
-        <Popup>
-          <button
-            onClick={() =>
-              router.push(
-                "https://map.kakao.com/link/map/별이보러가는길,37.577079,127.19151"
-              )
-            }
-          >
-            Kakao
-          </button>
-        </Popup>
         <Tooltip>온파티 하남</Tooltip>
       </Marker>
       {/* <MapMarker /> */}
