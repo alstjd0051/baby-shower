@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import Header from "./header";
+import { SessionProvider } from "next-auth/react";
 
 const LayoutWrapper = ({ children, ...props }: ThemeProviderProps) => {
   const [mounted, setMounted] = useState(false);
