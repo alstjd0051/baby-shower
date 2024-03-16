@@ -1,5 +1,6 @@
 import { IAdminStorage } from "@/typing";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 export function useMainSorage(slug?: string) {
   const { data: getAdmin, isLoading: getLoading } = useQuery<IAdminStorage[]>({
@@ -10,10 +11,13 @@ export function useMainSorage(slug?: string) {
         headers: {
           "Content-Type": "application/json",
         },
+        cache: "no-store",
       });
       const data = res.json();
       return data;
     },
+    gcTime: Infinity,
+    retry: 1,
   });
   const { mutate: POSTAdmin } = useMutation({
     mutationKey: ["post admin-storage"],
@@ -33,9 +37,30 @@ export function useMainSorage(slug?: string) {
       const req = await fetch(`/api/assets`, {
         method: "POST",
         body: formData,
+        cache: "no-store",
       }).then((res) => res.json());
       return req;
+    },
+    onSuccess: () => {
+      toast.success("업로드 성공");
     },
   });
   return { getAdmin, POSTAdmin, getLoading };
 }
+
+export const useCarouselStorage = () => {
+  const {} = useQuery({
+    queryKey: ["get storage", "carousel"],
+    queryFn: async () => {
+      const res = await fetch(`/api/assets?slug=carousel`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+      });
+      const data = res.json();
+      return data;
+    },
+  });
+};

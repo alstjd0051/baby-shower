@@ -4,6 +4,7 @@ import RightTiele from "../commons/items/framer/rightTiele";
 import { useMainSorage } from "../hooks/admin/storage";
 import MainImages from "../commons/items/main/images";
 import Carousel from "../commons/items/swiper/carousel";
+import { motion } from "framer-motion";
 
 type Props = {};
 
@@ -20,6 +21,7 @@ const MainWrapper = (props: Props) => {
     if (loading) {
       timer;
     }
+
     return () => clearTimeout(timer);
   }, [loading]);
 
@@ -27,14 +29,19 @@ const MainWrapper = (props: Props) => {
     <section className="h-dvh relative max-w-screen-xl mx-auto">
       {/* {loading && <CakeLoading />} */}
 
-      <div className="relative flex flex-col">
-        <MainImages
-          getAdmin={getAdmin}
-          getLoading={getLoading}
-          loading={loading}
-        />
+      <MainImages
+        getAdmin={getAdmin}
+        getLoading={getLoading}
+        loading={loading}
+      />
+
+      <motion.div
+        initial={{ y: "0", x: "0" }}
+        animate={{ y: "calc(100vh - 100%)", x: "calc(100vw - 100%)" }}
+      >
         <Carousel getAdmin={getCarousel} loading={loading} />
-      </div>
+      </motion.div>
+
       <RightTiele />
     </section>
   );

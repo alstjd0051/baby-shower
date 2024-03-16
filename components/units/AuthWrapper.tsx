@@ -38,11 +38,19 @@ const AuthWrapper = (props: Props) => {
   return (
     <div>
       <nav className="flex items-center gap-x-5">
-        {pages.map(({ id }) => (
-          <button key={id} onClick={() => handleClick(id)}>
-            {id}
-          </button>
-        ))}
+        {pages.map(({ id }, idx) => {
+          return (
+            <button
+              key={idx}
+              className={`${
+                activePage === id && "underline underline-offset-8 "
+              }`}
+              onClick={() => handleClick(id)}
+            >
+              {id}
+            </button>
+          );
+        })}
       </nav>
       <div className="mt-32">
         {/* 현재 선택된 페이지를 렌더링합니다. */}

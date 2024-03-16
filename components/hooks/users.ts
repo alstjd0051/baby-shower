@@ -1,7 +1,9 @@
 import { OAuthUser } from "@/typing";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { signOut } from "next-auth/react";
 
 export const useUsers = ({ id }: { id?: string }) => {
+  const queryClient = useQueryClient();
   const { data, isLoading } = useQuery<OAuthUser>({
     queryKey: ["users", id],
     queryFn: async () => {
@@ -16,5 +18,13 @@ export const useUsers = ({ id }: { id?: string }) => {
     },
   });
 
-  return { data, isLoading };
+  const { mutate: useSignout } = useMutation({
+    mutationKey: ["signout"],
+    onMutate: async () => {
+      await signOut();
+      queryClient.clear();
+    },
+  });
+
+  return { data, isLoading, useSignout };
 };

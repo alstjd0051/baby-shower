@@ -15,7 +15,7 @@ type Props = {
 const SocialLogin = ({ session }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const { isModalOpen, setOpenModal } = useSignInModal();
-  const { data } = useUsers({ id: session?.user.id! });
+  const { data, useSignout } = useUsers({ id: session?.user.id! });
   const router = useRouter();
 
   return (
@@ -52,7 +52,7 @@ const SocialLogin = ({ session }: Props) => {
                         Admin
                       </button>
                     )}
-                    <button className="" onClick={() => signOut()}>
+                    <button className="" onClick={useSignout}>
                       LogOut
                     </button>
                   </div>
