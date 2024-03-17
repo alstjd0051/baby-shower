@@ -14,6 +14,7 @@ export const useUsers = ({ id }: { id?: string }) => {
         },
       });
       const res = await data.json();
+
       return res;
     },
   });
