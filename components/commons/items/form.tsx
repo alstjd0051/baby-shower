@@ -31,7 +31,6 @@ const GuestForm = ({}: Props) => {
       setOpenModal(!isModalOpen);
     }
   };
-  console.log(errors);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: Object) => {
     try {
