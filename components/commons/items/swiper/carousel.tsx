@@ -12,8 +12,8 @@ import { SquarePen } from "lucide-react";
 import { AuthUser } from "@/typing";
 
 type Props = {
-  loading: boolean;
-  user:
+  loading?: boolean;
+  user?:
     | (AuthUser & {
         name?: string | null | undefined;
         email?: string | null | undefined;

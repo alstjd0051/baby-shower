@@ -1,5 +1,4 @@
 "use client";
-import { useMainSorage } from "@/components/hooks/admin/storage";
 import React from "react";
 
 import UploadForm from "./form";
@@ -9,11 +8,9 @@ type Props = {};
 const Carousel = dynamic(() => import("../swiper/carousel"), { ssr: false });
 
 const CarouselPage = (props: Props) => {
-  const { getAdmin } = useMainSorage("carousel");
-
   return (
     <div>
-      <Carousel getAdmin={getAdmin} />
+      <Carousel />
       <UploadForm />
     </div>
   );
