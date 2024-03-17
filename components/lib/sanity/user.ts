@@ -20,7 +20,7 @@ export const addUser = async ({
   username,
   provider,
 }: OAuthUser) => {
-  const req = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/login`, {
+  const req = await fetch(`${process.env.NEXTAUTH_URL}/api/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
