@@ -19,6 +19,9 @@ const GuestForm = ({}: Props) => {
     formState: { errors },
     handleSubmit,
     setError,
+    setValue,
+    getValues,
+    getFieldState,
   } = useForm();
   const onVlaidateForm = () => {
     if (!session) {
@@ -35,14 +38,20 @@ const GuestForm = ({}: Props) => {
         setError("name", {
           message: "로그인이 필요합니다.",
         });
+        setOpenModal(!isModalOpen);
       } else {
-        await postData(data);
+        setValue("name", session.user.name ?? session.user.username);
+        const newData = {
+          name: session.user.name ?? session.user.username,
+          message: (data as { message: string }).message,
+        };
+        await postData(newData);
       }
     } catch (error) {
       console.log(error);
     }
   };
-
+  console.log(getFieldState("name"));
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -50,11 +59,11 @@ const GuestForm = ({}: Props) => {
     >
       <input
         type="text"
-        className="disabled:bg-gray-200 "
+        className="disabled:bg-gray-200"
         {...register("name", {
           required: "이름을 입력해주세요.",
           disabled: !session?.user,
-          validate: (value: string) => value.length > 2,
+          validate: (session) => session?.user,
           maxLength: 15,
           minLength: 2,
         })}

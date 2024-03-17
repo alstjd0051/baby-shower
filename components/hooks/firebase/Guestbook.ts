@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 
 export const useGuestBook = () => {
   const queryClient = useQueryClient();
-  const router = useRouter();
   const {
     data: getData,
     isLoading: getLoading,
