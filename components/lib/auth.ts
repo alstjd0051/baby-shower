@@ -14,8 +14,8 @@ declare module "next-auth" {
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_OAUTH_ID!,
-      clientSecret: process.env.GOOGLE_OAUTH_SECRET!,
+      clientId: process.env.NEXT_SECRET_GOOGLE_OAUTH_ID!,
+      clientSecret: process.env.NEXT_SECRET_GOOGLE_OAUTH_SECRET!,
       async profile(profile) {
         const id = profile.sub;
         const name = profile.name;
@@ -47,8 +47,8 @@ export const authOptions: NextAuthOptions = {
       },
     }),
     NaverProvider({
-      clientId: process.env.NAVER_OAUTH_CLIENT_ID!,
-      clientSecret: process.env.NAVER_OAUTH_CLIENT_PW!,
+      clientId: process.env.NEXT_SECRET_NAVER_OAUTH_CLIENT_ID!,
+      clientSecret: process.env.NEXT_SECRET_NAVER_OAUTH_CLIENT_PW!,
       async profile(profile) {
         try {
           const res = await addUser({
@@ -75,8 +75,8 @@ export const authOptions: NextAuthOptions = {
       },
     }),
     KakaoProvider({
-      clientId: process.env.KAKAO_CLIENT_ID!,
-      clientSecret: process.env.KAKAO_CLIENT_SECRET!,
+      clientId: process.env.NEXT_SECRET_KAKAO_CLIENT_ID!,
+      clientSecret: process.env.NEXT_SECRET_KAKAO_CLIENT_SECRET!,
       async profile(profile) {
         try {
           const res = await addUser({
