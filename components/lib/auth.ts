@@ -22,73 +22,85 @@ export const authOptions: NextAuthOptions = {
         const image = profile.picture;
         const email = profile.email;
         const username = profile.name;
-        const res = await addUser({
-          id,
-          name,
-          image,
-          email: email || "Anonymous",
-          username,
-          selector: "public",
-          phone: "",
-          provider: "google",
-        });
-        return {
-          id,
-          name,
-          image,
-          email,
-          username,
-          selector: res.selector || "public",
-        };
+        try {
+          const res = await addUser({
+            id,
+            name,
+            image,
+            email: email || "Anonymous",
+            username,
+            selector: "public",
+            phone: "",
+            provider: "google",
+          });
+          return {
+            id,
+            name,
+            image,
+            email,
+            username,
+            selector: res.selector || "public",
+          };
+        } catch (error) {
+          throw new Error(`${error}`);
+        }
       },
     }),
     NaverProvider({
       clientId: process.env.NAVER_OAUTH_CLIENT_ID!,
       clientSecret: process.env.NAVER_OAUTH_CLIENT_PW!,
       async profile(profile) {
-        const res = await addUser({
-          id: profile.response.id,
-          name: profile.response.name,
-          image: profile.response.profile_image,
-          email: profile.response.email || "Anonymous",
-          username: profile.response.name,
-          selector: "public",
-          phone: profile.response.mobile || "",
-          provider: "naver",
-        });
-        return {
-          id: profile.response.id,
-          name: profile.response.name,
-          image: profile.response.profile_image,
-          email: profile.response.email,
-          username: profile.response.name,
-          selector: res.selector || "public",
-        };
+        try {
+          const res = await addUser({
+            id: profile.response.id,
+            name: profile.response.name,
+            image: profile.response.profile_image,
+            email: profile.response.email || "Anonymous",
+            username: profile.response.name,
+            selector: "public",
+            phone: profile.response.mobile || "",
+            provider: "naver",
+          });
+          return {
+            id: profile.response.id,
+            name: profile.response.name,
+            image: profile.response.profile_image,
+            email: profile.response.email,
+            username: profile.response.name,
+            selector: res.selector || "public",
+          };
+        } catch (error) {
+          throw error;
+        }
       },
     }),
     KakaoProvider({
       clientId: process.env.KAKAO_CLIENT_ID!,
       clientSecret: process.env.KAKAO_CLIENT_SECRET!,
       async profile(profile) {
-        const res = await addUser({
-          id: String(profile.id),
-          name: profile.properties.nickname,
-          image: profile.properties.profile_image,
-          email: profile.kakao_account?.email || "Anonymous",
-          username: profile.properties.nickname,
-          selector: "public",
-          phone: profile.kakao_account?.phone_number || "",
-          provider: "kakao",
-        });
+        try {
+          const res = await addUser({
+            id: String(profile.id),
+            name: profile.properties.nickname,
+            image: profile.properties.profile_image,
+            email: profile.kakao_account?.email || "Anonymous",
+            username: profile.properties.nickname,
+            selector: "public",
+            phone: profile.kakao_account?.phone_number || "",
+            provider: "kakao",
+          });
 
-        return {
-          id: String(profile.id),
-          name: profile.properties.nickname,
-          image: profile.properties.profile_image,
-          email: profile.kakao_account?.email || "Anonymous",
-          username: profile.properties.nickname,
-          selector: res.selector || "public",
-        };
+          return {
+            id: String(profile.id),
+            name: profile.properties.nickname,
+            image: profile.properties.profile_image,
+            email: profile.kakao_account?.email || "Anonymous",
+            username: profile.properties.nickname,
+            selector: res.selector || "public",
+          };
+        } catch (error) {
+          throw error;
+        }
       },
     }),
   ],
@@ -104,20 +116,28 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       const user = session.user;
-      if (session.user && token.selector) {
-        session.user.selector = token.selector as "public" | "admin";
+      try {
+        if (session.user && token.selector) {
+          session.user.selector = token.selector as "public" | "admin";
+        }
+        session.user = {
+          ...user,
+          id: (token.sub as string) || (token.id as string),
+        };
+        return session;
+      } catch (error) {
+        throw error;
       }
-      session.user = {
-        ...user,
-        id: (token.sub as string) || (token.id as string),
-      };
-      return session;
     },
     async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
+      try {
+        if (user) {
+          token.id = user.id;
+        }
+        return { ...token, ...user };
+      } catch (error) {
+        throw error;
       }
-      return { ...token, ...user };
     },
   },
 };
