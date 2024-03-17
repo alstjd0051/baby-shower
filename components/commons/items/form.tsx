@@ -31,6 +31,7 @@ const GuestForm = ({}: Props) => {
       setOpenModal(!isModalOpen);
     }
   };
+  console.log(errors);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: Object) => {
     try {
@@ -38,7 +39,7 @@ const GuestForm = ({}: Props) => {
         setError("name", {
           message: "로그인이 필요합니다.",
         });
-        setOpenModal(!isModalOpen);
+        setOpenModal(true);
       } else {
         setValue("name", session.user.name ?? session.user.username);
         const newData = {
@@ -51,7 +52,7 @@ const GuestForm = ({}: Props) => {
       console.log(error);
     }
   };
-  console.log(getFieldState("name"));
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -77,6 +78,7 @@ const GuestForm = ({}: Props) => {
       <textarea
         {...register("message", {
           required: "메시지를 입력해주세요",
+          disabled: !session?.user,
           onChange: textareaAutosize,
         })}
         placeholder="축하의 말을 작성해주세요."
