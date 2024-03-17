@@ -4,17 +4,18 @@ import React from "react";
 
 interface Props {
   getAdmin: IAdminStorage[] | undefined;
-  getLoading: boolean;
+
   loading: boolean;
 }
 
-const MainImages = ({ getAdmin, getLoading, loading }: Props) => {
+const MainImages = ({ getAdmin, loading }: Props) => {
+  console.log(getAdmin);
   return (
     <div
       id="wrapper"
       className={` ${
         loading ? "invisible" : "visible"
-      } mx-auto float-left  overflow-hidden max-w-[379px] max-h-[568px] shadow-xl -rotate-2 border-[10px] border-solid border-white `}
+      } mx-auto overflow-hidden max-w-[379px] max-h-[568px] shadow-xl -rotate-2 border-[10px] border-solid border-white `}
     >
       {getAdmin && (
         <Image
