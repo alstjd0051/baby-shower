@@ -94,9 +94,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, profile, account }) {
-      // console.log("signIn user", user);
-      // console.log("signIn profile", profile);
-      // console.log("signIn account", account);
       if (!user.email) return false;
       const isAllowedToSignIn = true;
       if (isAllowedToSignIn) {
@@ -107,10 +104,8 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       const user = session.user;
-      // console.log("session token", token);
-      // console.log("session session", session);
       if (session.user && token.selector) {
-        session.user.selector = token.selector as "public" | "master";
+        session.user.selector = token.selector as "public" | "admin";
       }
       session.user = {
         ...user,

@@ -28,7 +28,7 @@ const AuthWrapper = (props: Props) => {
   const user = session?.user;
   const router = useRouter();
   useEffect(() => {
-    if (user?.selector !== "master") {
+    if (user?.selector !== "admin") {
       process.env.NODE_ENV === "production" && router.replace("/");
     }
   }, [user, router]);
@@ -53,7 +53,6 @@ const AuthWrapper = (props: Props) => {
         })}
       </nav>
       <div className="mt-32">
-        {/* 현재 선택된 페이지를 렌더링합니다. */}
         {pages.map(({ id, Page }) => (
           <section
             key={id}

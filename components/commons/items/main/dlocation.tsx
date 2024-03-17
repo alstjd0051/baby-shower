@@ -12,7 +12,6 @@ const DateAndLocation = ({ loading }: Props) => {
 
   useEffect(() => {
     const currentDate = moment().format("YYYY-MM-DD");
-    console.log(currentDate);
 
     const targetDate = moment("2024-03-23");
 

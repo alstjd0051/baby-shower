@@ -1,18 +1,19 @@
 "use client";
 import React, { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import RightTiele from "../commons/items/framer/rightTiele";
-import { useMainSorage } from "../hooks/admin/storage";
+import { useMainImage, useMainSorage } from "../hooks/admin/storage";
 import MainImages from "../commons/items/main/images";
 import Carousel from "../commons/items/swiper/carousel";
 import DateAndLocation from "../commons/items/main/dlocation";
-import { CakeLoading } from "../commons/items/spinner/CakeLoading";
+import { CakeLoading } from "../commons/items/loading/CakeLoading";
+import { useSession } from "next-auth/react";
 
 type Props = {};
 
 const MainWrapper = (props: Props) => {
-  const { getAdmin } = useMainSorage("main");
-  const { getAdmin: getCarousel } = useMainSorage("carousel");
   const [loading, setLoading] = useState(false);
+  const { data: session } = useSession();
+  const user = session?.user;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,9 +30,9 @@ const MainWrapper = (props: Props) => {
   return (
     <section className="min-h-screen relative mx-auto grid grid-cols-1 items-center gap-y-10 overflow-hidden pt-10">
       {loading && <CakeLoading />}
-      <MainImages getAdmin={getAdmin} loading={loading} />
+      <MainImages user={user} loading={loading} />
       <Suspense fallback={null}>
-        <Carousel getAdmin={getCarousel} loading={loading} />
+        <Carousel user={user} loading={loading} />
       </Suspense>
       <div className=" absolute top-10 right-5 md:right-20">
         <RightTiele loading={loading} />

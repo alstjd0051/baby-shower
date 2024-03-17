@@ -1,12 +1,5 @@
 import { fireStore, storage } from "@/components/hooks/firebase/useFirebase";
-import {
-  addDoc,
-  arrayUnion,
-  collection,
-  doc,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { NextResponse } from "next/server";
 
@@ -17,7 +10,6 @@ export const GET = async (req: Request) => {
     const query = await getDoc(doc(fireStore, "assets", slug));
     const data = query.data();
     const files = data?.files;
-
     // return NextResponse.json({ message: "" }, { status: 200 });
     return NextResponse.json(files, { status: 200 });
   } catch (error) {
@@ -48,4 +40,30 @@ export const POST = async (req: Request) => {
   } catch (error) {
     return NextResponse.json(error, { status: 500 });
   }
+};
+
+export const PUT = async (req: Request) => {
+  const data = await req.formData();
+  const slug = data.get("slug") as string;
+  const images = data.getAll("images") as File[];
+
+  try {
+    images.forEach(async (image) => {
+      const imageRef = ref(storage, `/${slug}/${image.name}`);
+      uploadBytes(imageRef, image).then(async () => {
+        const files = {
+          name: image.name,
+          url: await getDownloadURL(imageRef).then((url) => url),
+        };
+        await updateDoc(doc(fireStore, "assets", slug), {
+          files: arrayUnion(files),
+        });
+      });
+    });
+    return NextResponse.json({ message: "Success" }, { status: 200 });
+  } catch (error) {
+    console.log(error);
+  }
+
+  return NextResponse.json({ message: "Success" }, { status: 200 });
 };

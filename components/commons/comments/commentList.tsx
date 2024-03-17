@@ -1,5 +1,5 @@
 import React from "react";
-import HamsterSpinner from "../items/spinner/hamster";
+import HamsterSpinner from "../items/loading/hamster";
 import { useGuestBook } from "@/components/hooks/firebase/Guestbook";
 
 type Props = {};

@@ -5,7 +5,7 @@ export type AuthUser = {
   email: string;
   image?: string;
   cookie?: string;
-  selector: "master" | "public";
+  selector: "admin" | "public";
   provider?: string;
 };
 export type AuthProfile = {
@@ -30,7 +30,7 @@ export type OAuthUser = {
   image?: string | null;
   username?: string;
   phone?: string;
-  selector: "master" | "public";
+  selector: "admin" | "public";
   provider?: string;
 };
 

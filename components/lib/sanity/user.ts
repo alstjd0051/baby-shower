@@ -35,6 +35,7 @@ export const addUser = async ({
       phone: phone || "",
       provider,
     }),
+    cache: "no-store",
   }).then((res) => res.json());
 
   return req;
