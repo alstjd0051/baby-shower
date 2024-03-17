@@ -24,7 +24,7 @@ export const PUT = async (req: Request) => {
   // console.log("images", images.name);
   // console.log("carousel", carousel);
   // console.log("key", key);
-  console.log(images);
+
   function modifyAtIndex({
     arr,
     index,
@@ -45,7 +45,7 @@ export const PUT = async (req: Request) => {
       console.error(
         "Index out of range. Index should be between 0 and 4 inclusive."
       );
-      console.log("result", arr);
+
       return arr;
     }
   }
