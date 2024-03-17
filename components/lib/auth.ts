@@ -117,6 +117,8 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       const user = session.user;
+      maxAge: 24 * 60 * 60; // 24 hours
+
       try {
         if (session.user && token.selector) {
           session.user.selector = token.selector as "public" | "admin";
@@ -125,6 +127,7 @@ export const authOptions: NextAuthOptions = {
           ...user,
           id: (token.sub as string) || (token.id as string),
         };
+
         return session;
       } catch (error) {
         throw error;

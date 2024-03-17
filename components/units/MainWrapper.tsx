@@ -14,6 +14,7 @@ const MainWrapper = (props: Props) => {
   const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
   const user = session?.user;
+  console.log(user);
 
   useEffect(() => {
     const timer = setTimeout(() => {

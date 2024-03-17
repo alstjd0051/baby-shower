@@ -42,11 +42,11 @@ const MainImages = ({ loading, user }: Props) => {
 
   const validateImage = () => {
     const image = watch("images");
-    if (image) {
+    console.log(image);
+    if (image !== undefined && image.length > 0) {
       return URL.createObjectURL(image[0]);
-    } else {
-      return getMainImg.url ?? "";
     }
+    return getMainImg.url ?? "";
   };
 
   if (isLoading)
