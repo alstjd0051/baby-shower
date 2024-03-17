@@ -14,13 +14,9 @@ const Nanumfont = Nanum_Pen_Script({
 
 type Props = {
   loading: boolean;
-  windowSize: {
-    width: number;
-    height: number;
-  };
 };
 
-const RightTiele = ({ loading, windowSize }: Props) => {
+const RightTiele = ({ loading }: Props) => {
   return (
     <div
       className={`${

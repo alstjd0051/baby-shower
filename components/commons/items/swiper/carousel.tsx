@@ -15,13 +15,13 @@ type Props = {
 const Carousel = ({ getAdmin, loading }: Props) => {
   return (
     !loading && (
-      <div className="">
+      <div className="  ">
         <Swiper
           effect={"cards"}
           grabCursor={true}
           modules={[EffectCards]}
-          className=" lg:max-w-lg"
-          loop={true}
+          className=" max-w-[279px] max-h-[568px] md:max-w-[379px] md:max-h-[568px]"
+          loop={getAdmin && getAdmin?.length > 0}
         >
           {getAdmin?.map(({ name, url }, idx) => (
             <SwiperSlide
@@ -30,7 +30,8 @@ const Carousel = ({ getAdmin, loading }: Props) => {
             >
               <Image
                 src={url}
-                loading="lazy"
+                priority
+                loading="eager"
                 alt={name}
                 width={500}
                 height={500}

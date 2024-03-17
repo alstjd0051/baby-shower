@@ -40,7 +40,7 @@ const LayoutWrapper = ({ children, ...props }: ThemeProviderProps) => {
         <QueryClientProvider client={queryClient}>
           <>
             <Header />
-            <main className="bg-[#ee9ca7] dark:bg-[#ee9ca7]/20 min-h-dvh">
+            <main className="bg-[#f3dcd5] dark:bg-[#ee9ca7]/20 min-h-dvh">
               {children}
             </main>
           </>

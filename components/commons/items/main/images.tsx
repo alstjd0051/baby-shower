@@ -9,21 +9,20 @@ interface Props {
 }
 
 const MainImages = ({ getAdmin, loading }: Props) => {
-  console.log(getAdmin);
   return (
     <div
-      id="wrapper"
       className={` ${
         loading ? "invisible" : "visible"
-      } mx-auto overflow-hidden max-w-[379px] max-h-[568px] shadow-xl -rotate-2 border-[10px] border-solid border-white `}
+      } mx-auto overflow-hidden max-w-[279px] max-h-[568px] md:max-w-[379px] md:max-h-[568px] shadow-xl -rotate-2 border-[10px] border-solid border-white`}
     >
       {getAdmin && (
         <Image
+          priority
           src={getAdmin?.[0]?.url ?? ""}
           alt={`${getAdmin?.[0]?.name}Image`}
           className="dust"
-          width={500}
-          height={500}
+          width={1000}
+          height={1000}
         />
       )}
     </div>

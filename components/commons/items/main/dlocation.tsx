@@ -5,13 +5,9 @@ import moment from "moment";
 
 type Props = {
   loading: boolean;
-  windowSize: {
-    width: number;
-    height: number;
-  };
 };
 
-const DateAndLocation = ({ loading, windowSize }: Props) => {
+const DateAndLocation = ({ loading }: Props) => {
   const [diff, setDiff] = useState<string>("");
 
   useEffect(() => {

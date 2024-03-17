@@ -18,7 +18,7 @@ export const useUsers = ({ id }: { id?: string }) => {
     },
   });
 
-  const { mutate: useSignout } = useMutation({
+  const { mutate: Signout } = useMutation({
     mutationKey: ["signout"],
     onMutate: async () => {
       await signOut();
@@ -26,5 +26,5 @@ export const useUsers = ({ id }: { id?: string }) => {
     },
   });
 
-  return { data, isLoading, useSignout };
+  return { data, isLoading, Signout };
 };

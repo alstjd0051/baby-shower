@@ -13,10 +13,6 @@ const MainWrapper = (props: Props) => {
   const { getAdmin } = useMainSorage("main");
   const { getAdmin: getCarousel } = useMainSorage("carousel");
   const [loading, setLoading] = useState(false);
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,18 +26,6 @@ const MainWrapper = (props: Props) => {
     return () => clearTimeout(timer);
   }, [loading]);
 
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <section className="min-h-screen relative mx-auto grid grid-cols-1 items-center gap-y-10 overflow-hidden pt-10">
       {loading && <CakeLoading />}
@@ -50,8 +34,8 @@ const MainWrapper = (props: Props) => {
         <Carousel getAdmin={getCarousel} loading={loading} />
       </Suspense>
       <div className=" absolute top-10 right-5 md:right-20">
-        <RightTiele windowSize={windowSize} loading={loading} />
-        <DateAndLocation windowSize={windowSize} loading={loading} />
+        <RightTiele loading={loading} />
+        <DateAndLocation loading={loading} />
       </div>
     </section>
   );
