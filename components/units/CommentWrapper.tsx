@@ -18,7 +18,9 @@ const CommentWrapper = (props: Props) => {
           alt="flowerImg"
           width={500}
           height={500}
+          sizes="50vw"
           className="w-50"
+          style={{ width: "auto", height: "auto" }}
         />
         <h1 className="text-5xl">방명록</h1>
       </div>
