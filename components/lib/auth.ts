@@ -104,6 +104,7 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  secret: process.env.NEXT_SECRET,
   callbacks: {
     async signIn({ user, profile, account }) {
       if (!user.email) return false;
