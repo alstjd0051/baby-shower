@@ -45,7 +45,7 @@ const SocialLogin = ({ session }: Props) => {
                 >
                   <div className="bg-inherit rotate-45 p-1 absolute top-0 -translate-y-1/2 left-1/3 -translate-x-1/2"></div>
                   <div className="space-y-2 hover:*:underline underline-offset-8">
-                    {session.user.selector === "master" && (
+                    {session.user.selector === "admin" && (
                       <button
                         className=""
                         onClick={() => router.push("/admin")}
