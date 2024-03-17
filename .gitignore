@@ -37,3 +37,10 @@ next-env.d.ts
 
 .env*
 /test
+
+/.firebase
+.firebaserc
+/firebase.json
+/.github
+/public/404.html
+/public/index.html
