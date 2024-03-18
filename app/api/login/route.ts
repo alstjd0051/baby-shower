@@ -1,4 +1,4 @@
-import { addUser, client } from "@/components/lib/sanity/user";
+import { client } from "@/components/lib/sanity/user";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
