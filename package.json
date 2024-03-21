@@ -2,6 +2,11 @@
   "name": "baby-shower",
   "version": "0.1.0",
   "private": true,
+    "author": {
+    "name": "MinseongSong",
+    "email": "wsc7202@gmail.com",
+    "url": "https://www.tylerblog.store/"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
